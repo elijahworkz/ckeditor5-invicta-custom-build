@@ -10,17 +10,34 @@
 	<div id="editor">
 		<p>Editor content goes here.</p>
 		<p>Simple image:</p>
-		
+
 		<figure class="image">
 			<img src="https://via.placeholder.com/1000x300/02c7cd/fff?text=Placeholder%20image" alt="CKEditor 5 rocks!">
 		</figure>
 	</div>
 
-	<script src="dist/bundle.js"></script>
+	<button id="test" type="button">Click me</button>
+	<style>
+		#test {
+			display: none;
+		}
+		#test.visible {
+			display: block;
+		}
+	</style>
+	<script src="build/ckeditor.js"></script>
 
 	<script>
-		document.addEventListener('insert-image-event', function(e) {
+		const button = document.getElementById('test');
+		document.addEventListener('ckeditor-insert-image', function (e) {
 			console.log(e);
+			button.classList.add('visible')
+		})
+
+		button.addEventListener('click', () => {
+			const event = new CustomEvent('image-selected',
+				{image:'https://lpm-staging.eteachergroup.com/storage/screenshots/lpthumb-9980.jpg?v=1561124822806'});
+			document.dispatchEvent(event)
 		})
 	</script>
 </body>
