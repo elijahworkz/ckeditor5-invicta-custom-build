@@ -1,4 +1,4 @@
-import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+import ClassicEditorBase from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
 import Essentials from '@ckeditor/ckeditor5-essentials/src/essentials';
 import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
@@ -57,68 +57,66 @@ class InsertImage extends Plugin {
 	}
 }
 
+export default class ClassicEditor extends ClassicEditorBase {}
 
-ClassicEditor
-	.create(document.querySelector('#editor'), {
-		plugins: [Essentials,
-			Autoformat,
-			Bold,
-			Italic,
-			BlockQuote,
-			Heading,
-			InsertImage,
-			Image,
-			ImageCaption,
-			ImageStyle,
-			ImageToolbar,
-			Link,
-			List,
-			Paragraph,
-			PasteFromOffice,
-			Table,
-			TableToolbar,
-			Font,
-			Alignment
-		],
-		toolbar: {
-			items: [
-				'heading',
-				'|',
-				'bold',
-				'italic',
-				'link',
-				'fontColor',
-				'fontSize',
-				'bulletedList',
-				'numberedList',
-				'blockQuote',
-				'insertImage',
-				'insertTable',
-				'alignment',
-				'undo'
-			]
-		},
-		image: {
-			toolbar: [
-				'imageStyle:full',
-				'imageStyle:side',
-				'|',
-				'imageTextAlternative'
-			]
-		},
-		table: {
-			contentToolbar: [
-				'tableColumn',
-				'tableRow',
-				'mergeTableCells'
-			]
-		},
-		// This value must be kept in sync with the language defined in webpack.config.js.
-		language: 'en'
-	})
-	.then(editor => {
-		console.log('Editor was initialized', editor);
-	})
-	.catch(error => {
-		console.error(error.stack);
-	});
+// Plugins to include in the build.
+ClassicEditor.builtinPlugins = [
+	Essentials,
+	Autoformat,
+	Bold,
+	Italic,
+	BlockQuote,
+	Heading,
+	InsertImage,
+	Image,
+	ImageCaption,
+	ImageStyle,
+	ImageToolbar,
+	Link,
+	List,
+	Paragraph,
+	PasteFromOffice,
+	Table,
+	TableToolbar,
+	Font,
+	Alignment
+];
+
+// Editor configuration.
+ClassicEditor.defaultConfig = {
+	toolbar: {
+		items: [
+			'heading',
+			'|',
+			'bold',
+			'italic',
+			'link',
+			'fontColor',
+			'fontSize',
+			'bulletedList',
+			'numberedList',
+			'blockQuote',
+			'insertImage',
+			'insertTable',
+			'alignment',
+			'undo'
+		]
+	},
+	image: {
+		toolbar: [
+			'imageStyle:full',
+			'imageStyle:side',
+			'|',
+			'imageTextAlternative'
+		]
+	},
+	table: {
+		contentToolbar: [
+			'tableColumn',
+			'tableRow',
+			'mergeTableCells'
+		]
+	},
+	// This value must be kept in sync with the language defined in webpack.config.js.
+	language: 'en'
+};
