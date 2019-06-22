@@ -44,7 +44,7 @@ class InsertImage extends Plugin {
 			view.on('execute', () => {
 				const ckEvent = new Event('ckeditor-insert-image');
 
-				editorDoc.dispatchEvent(ckEvent);
+				editorDoc.dispatchEvent(ckEvent, false);
 
 				editorDoc.addEventListener('image-selected', e => {
 					console.log(e)
