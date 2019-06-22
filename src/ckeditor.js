@@ -18,8 +18,6 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 
-import CKEditorInspector from '@ckeditor/ckeditor5-inspector';
-
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 
 import imageIcon from '@ckeditor/ckeditor5-core/theme/icons/image.svg';
@@ -120,7 +118,6 @@ ClassicEditor
 	})
 	.then(editor => {
 		console.log('Editor was initialized', editor);
-		CKEditorInspector.attach(editor)
 	})
 	.catch(error => {
 		console.error(error.stack);
