@@ -2,7 +2,8 @@
 	"name": "ckeditor5-build-lpm",
 	"version": "1.0.0",
 	"description": "Custom build for LPM System",
-	"main": "app.js",
+	"main": "./build/ckeditor.js",
+	"files": ["build"],
 	"scripts": {
 		"dev": "webpack -w --mode development",
 		"build": "webpack --mode production",
