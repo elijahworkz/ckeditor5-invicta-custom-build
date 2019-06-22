@@ -28,8 +28,8 @@ class InsertImage extends Plugin {
 	init() {
 		const editor = this.editor;
 		console.log(editor)
-		// const editorDoc = editor.sourceElement.ownerDocument;
-		// const editorWin = editorDoc.defaultView;
+		const editorDoc = editor.sourceElement.ownerDocument;
+		const editorWin = editorDoc.defaultView;
 
 		editor.ui.componentFactory.add('insertImage', locale => {
 			const view = new ButtonView(locale);
@@ -44,9 +44,9 @@ class InsertImage extends Plugin {
 			view.on('execute', () => {
 				const ckEvent = new Event('ckeditor-insert-image');
 
-				document.dispatchEvent(ckEvent);
+				editorDoc.dispatchEvent(ckEvent);
 
-				document.addEventListener('image-selected', e => {
+				editorDoc.addEventListener('image-selected', e => {
 					console.log(e)
 				})
 
