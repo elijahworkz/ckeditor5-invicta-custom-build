@@ -21,11 +21,19 @@
 		#test {
 			display: none;
 		}
+
 		#test.visible {
 			display: block;
 		}
 	</style>
 	<script src="build/ckeditor.js"></script>
+	<script>
+		ClassicEditor
+			.create(document.querySelector('#editor'))
+			.catch(error => {
+				console.error(error);
+			});
+	</script>
 
 	<script>
 		const button = document.getElementById('test');
@@ -35,8 +43,9 @@
 		})
 
 		button.addEventListener('click', () => {
-			const event = new CustomEvent('image-selected',
-				{image:'https://lpm-staging.eteachergroup.com/storage/screenshots/lpthumb-9980.jpg?v=1561124822806'});
+			const event = new CustomEvent('image-selected', {
+				image: 'https://lpm-staging.eteachergroup.com/storage/screenshots/lpthumb-9980.jpg?v=1561124822806'
+			});
 			document.dispatchEvent(event)
 		})
 	</script>

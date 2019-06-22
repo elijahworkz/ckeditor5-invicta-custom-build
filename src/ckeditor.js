@@ -42,9 +42,12 @@ class InsertImage extends Plugin {
 
 			// Callback executed once the image is clicked.
 			view.on('execute', () => {
-				const ckEvent = new Event('ckeditor-insert-image');
+				// const ckEvent = new Event('ckeditor-insert-image');
 
-				editorDoc.dispatchEvent(ckEvent, false);
+				// editorDoc.dispatchEvent(ckEvent, false);
+				if (typeof window.lpm !== 'undefined') {
+					lpm.$bus.$emit('ckeditor-insert-image');
+				}
 
 				editorDoc.addEventListener('image-selected', e => {
 					console.log(e)
