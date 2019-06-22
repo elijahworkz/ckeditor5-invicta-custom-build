@@ -29,8 +29,9 @@ import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
 class InsertImage extends Plugin {
 	init() {
 		const editor = this.editor;
-		const editorDoc = editor.sourceElement.ownerDocument;
-		const editorWin = editorDoc.defaultView;
+		console.log(editor)
+		// const editorDoc = editor.sourceElement.ownerDocument;
+		// const editorWin = editorDoc.defaultView;
 
 		editor.ui.componentFactory.add('insertImage', locale => {
 			const view = new ButtonView(locale);
@@ -45,9 +46,9 @@ class InsertImage extends Plugin {
 			view.on('execute', () => {
 				const ckEvent = new Event('ckeditor-insert-image');
 
-				editorDoc.dispatchEvent(ckEvent);
+				document.dispatchEvent(ckEvent);
 
-				editorDoc.addEventListener('image-selected', e => {
+				document.addEventListener('image-selected', e => {
 					console.log(e)
 				})
 
