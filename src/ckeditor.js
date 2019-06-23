@@ -49,8 +49,8 @@ class InsertImage extends Plugin {
 					lpm.$bus.$emit('ckeditor-insert-image');
 				}
 
-				editorDoc.addEventListener('image-selected', e => {
-					console.log(e)
+				lpm.$bus.$on('image-selected', (e) => {
+					console.log(e, e.data)
 				})
 
 			});
