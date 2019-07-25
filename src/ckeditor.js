@@ -18,52 +18,9 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 
-import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
+import InsertImage from './plugins/InsertImage'
+import InsertAudio from './plugins/insertAudio/insertaudio'
 
-import imageIcon from '@ckeditor/ckeditor5-core/theme/icons/image.svg';
-
-import ButtonView from '@ckeditor/ckeditor5-ui/src/button/buttonview';
-
-class InsertImage extends Plugin {
-	init() {
-		const editor = this.editor;
-
-		editor.ui.componentFactory.add('insertImage', locale => {
-			const view = new ButtonView(locale);
-
-			view.set({
-				label: 'Insert image',
-				icon: imageIcon,
-				tooltip: true
-			});
-
-			// Callback executed once the image is clicked.
-			view.on('execute', () => {
-
-				editor.model.change(writer => {
-
-					if (typeof window.lpm !== 'undefined') {
-						lpm.$bus.$emit('ckeditor-insert-image');
-					}
-
-					document.addEventListener('ckeditor-image-selected', (e) => {
-
-						const imageElement = writer.createElement('image', {
-							src: e.detail
-						});
-
-						editor.model.insertContent(imageElement, editor.model.document.selection);
-
-					}, false);
-
-				});
-
-			});
-
-			return view;
-		});
-	}
-}
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -80,6 +37,7 @@ ClassicEditor.builtinPlugins = [
 	ImageCaption,
 	ImageStyle,
 	ImageToolbar,
+	InsertAudio,
 	Link,
 	List,
 	Paragraph,
@@ -105,6 +63,7 @@ ClassicEditor.defaultConfig = {
 			'numberedList',
 			'blockQuote',
 			'insertImage',
+			'insertAudio',
 			'insertTable',
 			'alignment',
 			'undo'

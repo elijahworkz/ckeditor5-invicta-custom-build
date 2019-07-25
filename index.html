@@ -11,13 +11,37 @@
 		<p>Editor content goes here.</p>
 		<p>Simple image:</p>
 
-		<figure class="image">
-			<img src="https://via.placeholder.com/1000x300/02c7cd/fff?text=Placeholder%20image" alt="CKEditor 5 rocks!">
-		</figure>
+		<div class="audio-button" data-audio="audio1">
+			<img src="https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png" />
+			Some <strong>strong</strong> title here
+			<audio id="audio1" src="https://lp.rosenhebrewschool.com/Content/audio/shalom_ani_pnina_male.mp3"
+				type="audio/mpeg"></audio>
+		</div>
+
+		<p>some paragraph</p>
 	</div>
 
 	<button id="test" type="button">Click me</button>
+
 	<style>
+		.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se,
+		.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
+			transform: translate3d(0, 100.9%, 0);
+		}
+
+		.audio-button {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+		}
+
+		.audio-button .icon {
+			margin-right: 10px;
+			min-width: 20px;
+		}
+
+		.audio-button .icon:hover {}
+
 		#test {
 			display: none;
 		}
@@ -26,10 +50,14 @@
 			display: block;
 		}
 	</style>
-	<script src="build/ckeditor.js"></script>
+	<script src="./build/ckeditor.js"></script>
+	<script src="/node_modules/@ckeditor/ckeditor5-inspector/build/inspector.js"></script>
 	<script>
 		ClassicEditor
 			.create(document.querySelector('#editor'))
+			.then(editor => {
+				CKEditorInspector.attach(editor)
+			})
 			.catch(error => {
 				console.error(error);
 			});
@@ -37,17 +65,29 @@
 
 	<script>
 		const button = document.getElementById('test');
-		document.addEventListener('ckeditor-insert-image', function (e) {
+		document.addEventListener('ckeditor-insert-audio', function (e) {
 			console.log(e);
 			button.classList.add('visible')
 		})
 
 		button.addEventListener('click', () => {
-			const event = new CustomEvent('image-selected', {
-				image: 'https://lpm-staging.eteachergroup.com/storage/screenshots/lpthumb-9980.jpg?v=1561124822806'
+			const event = new CustomEvent('ckeditor-audio-selected', {
+				detail: 'https://lp.rosenhebrewschool.com/Content/audio/shalom_ani_pnina_male.mp3'
 			});
 			document.dispatchEvent(event)
 		})
+		// document.addEventListener("DOMContentLoaded", () => {
+
+		const audioBtns = document.querySelectorAll('.audio-button')
+		audioBtns.forEach(function (el) {
+
+			el.addEventListener('click', function () {
+				let target = el.getAttribute('data-audio')
+				document.getElementById(target).play()
+			})
+
+		})
+		// })
 	</script>
 </body>
 
