@@ -5,10 +5,10 @@ export class InsertAudioBoxCommand extends Command {
 		this.editor.model.change(writer => {
 
 			if (typeof window.lpm !== 'undefined') {
-				lpm.$bus.$emit('ckeditor-insert-image');
+				lpm.$bus.$emit('ckeditor-insert-audio');
 			}
 
-			document.dispatchEvent(new Event('ckeditor-insert-audio'));
+			// document.dispatchEvent(new Event('ckeditor-insert-audio'));
 
 			document.addEventListener('ckeditor-audio-selected', (e) => {
 				this.editor.model.change(writer => {
