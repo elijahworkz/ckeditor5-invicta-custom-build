@@ -1,5 +1,6 @@
 import Plugin from '@ckeditor/ckeditor5-core/src/plugin'
 import {
+	toWidget,
 	toWidgetEditable
 } from '@ckeditor/ckeditor5-widget/src/utils'
 import Widget from '@ckeditor/ckeditor5-widget/src/widget'
@@ -17,17 +18,22 @@ export default class InsertAudioEditing extends Plugin {
 		this._defineSchema()
 		this._defineConverters()
 
-		this.editor.commands.add('insertAudioBox', new InsertAudioBoxCommand(this.editor))
+		// this.editor.commands.add('insertAudioBox', new InsertAudioBoxCommand(this.editor))
 	}
 
 	_defineSchema() {
 		const schema = this.editor.model.schema;
 
 		schema.register('audioBox', {
-			isLimit: true,
+			isObject: true,
 			allowWhere: '$block',
-			allowContentOf: '$root',
 			allowAttributes: ['data-audio'],
+		})
+		
+		schema.register('audioButton', {
+			isLimit: true,
+			allowIn: 'audioBox',
+			allowContentOf: '$root'
 		})
 
 		schema.register('audio', {
@@ -67,9 +73,36 @@ export default class InsertAudioEditing extends Plugin {
 			model: 'audioBox',
 			view: (modelElement, viewWriter) => {
 
-				const section = viewWriter.createEditableElement('div', {
-					class: 'audio-button',
+				const section = viewWriter.createContainerElement('div', { class: 'audio-button'})
+
+				return toWidget(section, viewWriter, {
+					label: 'Audio widget',
+					hasSelectionHandler: true
 				})
+			}
+		})
+
+		conversion.for('upcast').elementToElement({
+			model: 'audioButton',
+			view: {
+				name: 'div',
+				classes: 'button-wrap'
+			}
+		})
+
+		conversion.for('dataDowncast').elementToElement({
+			model: 'audioButton',
+			view: {
+				name: 'div',
+				classes: 'button-wrap'
+			}
+		})
+
+		conversion.for('editingDowncast').elementToElement({
+			model: 'audioButton',
+			view: (modelElement, viewWriter) => {
+
+				const section = viewWriter.createEditableElement('div', {class:'button-wrap'})
 
 				return toWidgetEditable(section, viewWriter, {
 					label: 'Audio button widget'

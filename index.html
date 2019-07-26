@@ -12,8 +12,10 @@
 		<p>Simple image:</p>
 
 		<div class="audio-button" data-audio="audio1">
-			<img src="https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png" />
-			Some <strong>strong</strong> title here
+			<div class="button-wrap">
+				<img src="https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png" />
+				Some <strong>strong</strong> title here
+			</div>
 			<audio id="audio1" src="https://lp.rosenhebrewschool.com/Content/audio/shalom_ani_pnina_male.mp3"
 				type="audio/mpeg"></audio>
 		</div>
@@ -24,12 +26,18 @@
 	<button id="test" type="button">Click me</button>
 
 	<style>
+		.ck .ck-widget.ck-widget_with-selection-handler .ck-widget__selection-handler {
+			top: 0;
+		}
 		.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se,
 		.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
 			transform: translate3d(0, 100.9%, 0);
 		}
 
 		.audio-button {
+			/* padding: 5px; */
+		}
+		.audio-button .button-wrap{
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
@@ -75,6 +83,7 @@
 				detail: 'https://lp.rosenhebrewschool.com/Content/audio/shalom_ani_pnina_male.mp3'
 			});
 			document.dispatchEvent(event)
+			button.classList.remove('visible')
 		})
 		// document.addEventListener("DOMContentLoaded", () => {
 

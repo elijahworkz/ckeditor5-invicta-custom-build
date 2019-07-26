@@ -8,7 +8,7 @@ export class InsertAudioBoxCommand extends Command {
 				lpm.$bus.$emit('ckeditor-insert-audio');
 			}
 
-			// document.dispatchEvent(new Event('ckeditor-insert-audio'));
+			document.dispatchEvent(new Event('ckeditor-insert-audio'));
 
 			document.addEventListener('ckeditor-audio-selected', (e) => {
 				this.editor.model.change(writer => {
@@ -24,9 +24,13 @@ export class InsertAudioBoxCommand extends Command {
 
 
 					const imageElement = writer.createElement('image', {
-						src: 'https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png'
+						src: 'https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png',
+						id: 'image' + Date.now()
 					})
-					const textElement = writer.createElement('paragraph', { class: 'text'})
+					const textElement = writer.createElement('paragraph', {
+						class: 'text',
+						id: 'text' + Date.now()
+					})
 
 					writer.append(imageElement, audioBox)
 					writer.append(textElement, audioBox)
