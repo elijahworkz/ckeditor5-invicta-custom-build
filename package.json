@@ -1,6 +1,6 @@
 {
 	"name": "ckeditor5-build-lpm",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Custom build for LPM System",
 	"main": "./build/ckeditor.js",
 	"files": [

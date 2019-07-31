@@ -41,12 +41,12 @@ export default class InsertAudio extends Plugin {
 						})
 						const audio = writer.createElement('audio', {
 							id: audioid,
-							src: e.media_url,
+							src: e.detail.media_url,
 							type: 'audio/mpeg'
 						})
 
 						const imageElement = writer.createElement('image', {
-							src: e.icon
+							src: e.detail.icon
 						})
 						writer.append(imageElement, audioButton)
 
@@ -56,7 +56,7 @@ export default class InsertAudio extends Plugin {
 
 						writer.append(audioButton, audioBox)
 						writer.append(audio, audioBox)
-						
+
 						writer.append(textElement, audioButton)
 						writer.appendText('Enter your text here', textElement)
 

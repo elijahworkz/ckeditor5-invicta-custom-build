@@ -29,6 +29,7 @@
 		.ck .ck-widget.ck-widget_with-selection-handler .ck-widget__selection-handler {
 			top: 0;
 		}
+
 		.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_se,
 		.ck.ck-dropdown .ck-dropdown__panel.ck-dropdown__panel_sw {
 			transform: translate3d(0, 100.9%, 0);
@@ -37,7 +38,8 @@
 		.audio-button {
 			/* padding: 5px; */
 		}
-		.audio-button .button-wrap{
+
+		.audio-button .button-wrap {
 			display: flex;
 			justify-content: flex-start;
 			align-items: center;
@@ -80,7 +82,10 @@
 
 		button.addEventListener('click', () => {
 			const event = new CustomEvent('ckeditor-audio-selected', {
-				detail: 'https://lp.rosenhebrewschool.com/Content/audio/shalom_ani_pnina_male.mp3'
+				detail: {
+					media_url: 'https://lp.rosenhebrewschool.com/Content/audio/shalom_ani_pnina_male.mp3',
+					icon: 'https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png'
+				}
 			});
 			document.dispatchEvent(event)
 			button.classList.remove('visible')
