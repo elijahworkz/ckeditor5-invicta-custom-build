@@ -29,7 +29,7 @@ export default class InsertImage extends Plugin {
 					document.addEventListener('ckeditor-image-selected', (e) => {
 
 						const imageElement = writer.createElement('image', {
-							src: e.detail
+							src: e.image_url
 						});
 
 						editor.model.insertContent(imageElement, editor.model.document.selection);

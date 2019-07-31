@@ -41,12 +41,12 @@ export default class InsertAudio extends Plugin {
 						})
 						const audio = writer.createElement('audio', {
 							id: audioid,
-							src: e.detail,
+							src: e.media_url,
 							type: 'audio/mpeg'
 						})
 
 						const imageElement = writer.createElement('image', {
-							src: 'https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png'
+							src: e.icon
 						})
 						writer.append(imageElement, audioButton)
 
