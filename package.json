@@ -1,7 +1,7 @@
 {
-	"name": "ckeditor5-build-lpm",
+	"name": "ckeditor5-build-invicta",
 	"version": "1.0.1",
-	"description": "Custom build for LPM System",
+	"description": "Custom build for Invicta Admin",
 	"main": "./build/ckeditor.js",
 	"files": [
 		"build"
@@ -13,7 +13,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@bitbucket.org/eteachergrouprd/ckeditor5-lpm-custom-build.git"
+		"url": "git+ssh://git@bitbucket.org/eteachergrouprd/ckeditor5-invicta-custom-build.git"
 	},
 	"keywords": [
 		"ckeditor5",
@@ -21,7 +21,7 @@
 	],
 	"author": "Ilya Gromov",
 	"license": "ISC",
-	"homepage": "https://bitbucket.org/eteachergrouprd/ckeditor5-lpm-custom-build#readme",
+	"homepage": "https://bitbucket.org/eteachergrouprd/ckeditor5-invicta-custom-build#readme",
 	"devDependencies": {
 		"@ckeditor/ckeditor5-alignment": "^11.1.1",
 		"@ckeditor/ckeditor5-autoformat": "^11.0.2",
