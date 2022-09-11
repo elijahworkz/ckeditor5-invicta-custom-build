@@ -25,8 +25,8 @@ export default class InsertAudio extends Plugin {
 			view.on('execute', () => {
 
 
-				if (typeof window.lpm !== 'undefined') {
-					lpm.$bus.$emit('ckeditor-insert-audio');
+				if (typeof window.Invicta !== 'undefined') {
+					Invicta.emit('ckeditor-insert-audio');
 				}
 				// document.dispatchEvent(new Event('ckeditor-insert-audio'));
 

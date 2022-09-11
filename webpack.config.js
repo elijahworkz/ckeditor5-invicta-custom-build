@@ -9,7 +9,7 @@ const {
 	styles
 } = require('@ckeditor/ckeditor5-dev-utils');
 const CKEditorWebpackPlugin = require('@ckeditor/ckeditor5-dev-webpack-plugin');
-const UglifyJsWebpackPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require( 'terser-webpack-plugin' );
 
 module.exports = {
 	devtool: 'source-map',
@@ -31,14 +31,15 @@ module.exports = {
 
 	optimization: {
 		minimizer: [
-			new UglifyJsWebpackPlugin({
+			new TerserPlugin({
 				sourceMap: true,
-				uglifyOptions: {
+				terserOptions: {
 					output: {
 						// Preserve CKEditor 5 license comments.
 						comments: /^!/
 					}
-				}
+				},
+				extractComments: false
 			})
 		]
 	},
@@ -56,26 +57,34 @@ module.exports = {
 	],
 
 	module: {
-		rules: [{
+		rules: [
+			{
 				test: /\.svg$/,
-				use: ['raw-loader']
+				use: [ 'raw-loader' ]
 			},
 			{
 				test: /\.css$/,
-				use: [{
+				use: [
+					{
 						loader: 'style-loader',
 						options: {
-							singleton: true
+							injectType: 'singletonStyleTag',
+							attributes: {
+                                'data-cke': true
+                            }
 						}
 					},
+					'css-loader',
 					{
 						loader: 'postcss-loader',
-						options: styles.getPostCssConfig({
-							themeImporter: {
-								themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
-							},
-							minify: true
-						})
+						options: {
+							postcssOptions: styles.getPostCssConfig({
+								themeImporter: {
+									themePath: require.resolve('@ckeditor/ckeditor5-theme-lark')
+								},
+								minify: true
+							})
+						}
 					},
 				]
 			}

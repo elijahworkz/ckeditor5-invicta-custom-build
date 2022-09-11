@@ -73,7 +73,7 @@ ClassicEditor.defaultConfig = {
 		]
 	},
 	image: {
-		toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:full', 'imageStyle:alignRight'],
+		toolbar: ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:block', 'imageStyle:alignRight'],
 		styles: [
 			'full',
 			'alignLeft',

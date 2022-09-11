@@ -71,7 +71,7 @@ export default class InsertAudioEditing extends Plugin {
 
 		conversion.for('editingDowncast').elementToElement({
 			model: 'audioBox',
-			view: (modelElement, viewWriter) => {
+			view: (modelElement, { writer: viewWriter }) => {
 
 				const section = viewWriter.createContainerElement('div', { class: 'audio-button'})
 
@@ -100,7 +100,7 @@ export default class InsertAudioEditing extends Plugin {
 
 		conversion.for('editingDowncast').elementToElement({
 			model: 'audioButton',
-			view: (modelElement, viewWriter) => {
+			view: (modelElement, { writer: viewWriter }) => {
 
 				const section = viewWriter.createEditableElement('div', {class:'button-wrap'})
 

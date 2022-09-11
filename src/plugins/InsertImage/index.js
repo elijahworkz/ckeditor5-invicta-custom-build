@@ -22,8 +22,8 @@ export default class InsertImage extends Plugin {
 
 				editor.model.change(writer => {
 
-					if (typeof window.lpm !== 'undefined') {
-						lpm.$bus.$emit('ckeditor-insert-image');
+					if (typeof window.Invicta !== 'undefined') {
+						Invicta.emit('ckeditor-insert-image');
 					}
 
 					document.addEventListener('ckeditor-image-selected', (e) => {
