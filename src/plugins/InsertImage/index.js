@@ -24,19 +24,16 @@ export default class InsertImage extends Plugin {
 
 					if (typeof window.Invicta !== 'undefined') {
 						Invicta.emit('ckeditor-insert-image');
-						
-						Invicta.on('ckeditor-image-selected', (event) => {
-							console.log('this one comes directly from invicta', event)
-						})
 					}
 
 					document.addEventListener('ckeditor-image-selected', (e) => {
 						
-						console.log('I hear invicta event', e)
-
+						
 						const imageElement = writer.createElement('image', {
 							src: e.detail.image_url
 						});
+						
+						console.log('I hear invicta event', e, imageElement)
 
 						editor.model.insertContent(imageElement, editor.model.document.selection);
 
