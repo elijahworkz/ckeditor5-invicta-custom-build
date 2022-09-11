@@ -23,7 +23,7 @@
 		<p>some paragraph</p>
 	</div>
 
-	<button id="test" type="button">Click me</button>
+	<button id="test" type="button">Click me now</button>
 
 	<style>
 		.ck .ck-widget.ck-widget_with-selection-handler .ck-widget__selection-handler {
@@ -75,16 +75,18 @@
 
 	<script>
 		const button = document.getElementById('test');
-		document.addEventListener('ckeditor-insert-audio', function (e) {
+		document.addEventListener('ckeditor-insert-image', function (e) {
 			console.log(e);
 			button.classList.add('visible')
 		})
 
 		button.addEventListener('click', () => {
-			const event = new CustomEvent('ckeditor-audio-selected', {
+			const event = new CustomEvent('ckeditor-image-selected', {
 				detail: {
 					media_url: 'https://lp.rosenhebrewschool.com/Content/audio/shalom_ani_pnina_male.mp3',
-					icon: 'https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png'
+					icon: 'https://lp.rosenhebrewschool.com/Content/images/Audio_icon.png',
+					image_url: 'https://new.ibc.local/storage/images/group-20.png',
+					image_alt: 'Just some text for testing'
 				}
 			});
 			document.dispatchEvent(event)

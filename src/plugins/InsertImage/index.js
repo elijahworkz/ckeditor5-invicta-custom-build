@@ -8,32 +8,34 @@ export default class InsertImage extends Plugin {
 	init() {
 		const editor = this.editor;
 
-		editor.ui.componentFactory.add('insertImage', locale => {
-			const view = new ButtonView(locale);
+		editor.ui.componentFactory.add('insertImage', () => {
+			const button = new ButtonView();
 
-			view.set({
+			button.set({
 				label: 'Insert image',
 				icon: imageIcon,
 				tooltip: true
 			});
 
 			// Callback executed once the image is clicked.
-			view.on('execute', () => {
+			button.on('execute', () => {
 
 				editor.model.change(writer => {
 
 					if (typeof window.Invicta !== 'undefined') {
 						Invicta.emit('ckeditor-insert-image');
 					}
+					
+					// For local dev
+					// document.dispatchEvent(new Event('ckeditor-insert-image'))
 
 					document.addEventListener('ckeditor-image-selected', (e) => {
 						
 						
-						const imageElement = writer.createElement('image', {
-							src: e.detail.image_url
+						const imageElement = writer.createElement('imageBlock', {
+							src: e.detail.image_url,
+							alt: e.detail.image_alt
 						});
-						
-						console.log('I hear invicta event', e, imageElement)
 
 						editor.model.insertContent(imageElement, editor.model.document.selection);
 
@@ -43,7 +45,7 @@ export default class InsertImage extends Plugin {
 
 			});
 
-			return view;
+			return button;
 		});
 	}
 }
