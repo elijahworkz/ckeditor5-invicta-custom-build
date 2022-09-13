@@ -58,17 +58,18 @@ ClassicEditor.builtinPlugins = [
 	Alignment,
 	SourceEditing,
 	RemoveFormat,
+	Superscript,
+	Subscript
 ];
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
-			'undo', 'redo',
+			'undo',
 			'|',
 			'heading',
 			'|',
-			'removeFormat',
 			'bold',
 			'italic',
             'underline',
@@ -78,15 +79,18 @@ ClassicEditor.defaultConfig = {
 			'numberedList',
 			'blockQuote',
 			'|',
+			'alignment',
 			'link',
-			'resourceLink',
 			'|',
 			'insertImage',
+			'resourceLink',
+			'|',
 			'mediaEmbed',
-			'|',
 			'insertTable',
-			'alignment',
 			'|',
+			'subscript',
+			'superscript',
+			'removeFormat',
 			'sourceEditing'
 		]
 	},

@@ -8,7 +8,8 @@ export default class TriggerSelector extends Command {
 			Invicta.emit('ckeditor-insert-link');
 		}
 		
-		document.dispatchEvent(new Event('ckeditor-insert-link'))
+		// For dev purposes
+		//document.dispatchEvent(new Event('ckeditor-insert-link'))
 		
 	}
 }
