@@ -4,6 +4,8 @@ import Autoformat from '@ckeditor/ckeditor5-autoformat/src/autoformat';
 import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
 import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
+import Superscript from '@ckeditor/ckeditor5-basic-styles/src/superscript';
+import Subscript from '@ckeditor/ckeditor5-basic-styles/src/subscript';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
 import Image from '@ckeditor/ckeditor5-image/src/image';
@@ -18,9 +20,13 @@ import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import Font from '@ckeditor/ckeditor5-font/src/font';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import SourceEditing from '@ckeditor/ckeditor5-source-editing/src/sourceediting';
+import RemoveFormat from '@ckeditor/ckeditor5-remove-format/src/removeformat';
+import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 
 import InsertImage from './plugins/InsertImage'
-import InsertAudio from './plugins/insertAudio/insertaudio'
+import ResourceLink from './plugins/ResourceLink/resourcelink';
+// import InsertAudio from './plugins/insertAudio/insertaudio'
 
 
 export default class ClassicEditor extends ClassicEditorBase {}
@@ -39,37 +45,49 @@ ClassicEditor.builtinPlugins = [
 	ImageCaption,
 	ImageStyle,
 	ImageToolbar,
-	InsertAudio,
+	MediaEmbed,
+	// InsertAudio,
 	Link,
+	ResourceLink,
 	List,
 	Paragraph,
 	PasteFromOffice,
 	Table,
 	TableToolbar,
 	Font,
-	Alignment
+	Alignment,
+	SourceEditing,
+	RemoveFormat,
 ];
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
 	toolbar: {
 		items: [
+			'undo', 'redo',
+			'|',
 			'heading',
 			'|',
+			'removeFormat',
 			'bold',
 			'italic',
             'underline',
-            'link',
 			'fontColor',
 			'fontSize',
 			'bulletedList',
 			'numberedList',
 			'blockQuote',
+			'|',
+			'link',
+			'resourceLink',
+			'|',
 			'insertImage',
-			'insertAudio',
+			'mediaEmbed',
+			'|',
 			'insertTable',
 			'alignment',
-			'undo'
+			'|',
+			'sourceEditing'
 		]
 	},
 	image: {
@@ -86,6 +104,19 @@ ClassicEditor.defaultConfig = {
 			'tableRow',
 			'mergeTableCells'
 		]
+	},
+	link: {
+		addTargetToExternalLinks: true,
+		decorators: {
+			openInNewTab: {
+				mode: 'manual',
+				label: 'Open in a new tab',
+				attributes: {
+					target: '_blank',
+					rel: 'noopener noreferrer'
+				}
+			}
+		}
 	},
 	// This value must be kept in sync with the language defined in webpack.config.js.
 	language: 'en'
