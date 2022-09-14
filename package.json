@@ -1,6 +1,6 @@
 {
 	"name": "ckeditor5-build-invicta",
-	"version": "1.0.4",
+	"version": "1.1.0",
 	"description": "Custom build for Invicta Admin",
 	"main": "./build/ckeditor.js",
 	"files": [

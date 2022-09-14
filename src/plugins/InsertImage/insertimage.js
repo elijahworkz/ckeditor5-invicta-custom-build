@@ -18,7 +18,7 @@ export default class InsertImageCommand extends Command {
 				alt: image_alt
 			});
 
-			editor.model.insertContent(imageElement, selection);
+			model.insertContent(imageElement, selection);
 
 		})
 	}

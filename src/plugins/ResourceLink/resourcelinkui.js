@@ -2,15 +2,15 @@ import Plugin from '@ckeditor/ckeditor5-core/src/plugin';
 import { ButtonView } from '@ckeditor/ckeditor5-ui';
 import LinkIcon from './link-icon.svg';
 import AddResourceLink from './addresourcelink'
-import TriggerSelector from './triggerselector'
+import SelectResourceLink from './selectresourcelink'
 
 export default class ResourceLinkUi extends Plugin {
 	
 	init() {
 		const editor = this.editor
 		
-		editor.commands.add( 'triggerResourceSelector', new TriggerSelector( editor ) );
-		editor.commands.add( 'addResourceLink', new AddResourceLink( editor ) );
+		editor.commands.add( 'invictaSelectResource', new SelectResourceLink( editor ) );
+		editor.commands.add( 'invictaAddLink', new AddResourceLink( editor ) );
 		
 		editor.ui.componentFactory.add('resourceLink', () => {
 			const button = new ButtonView();
@@ -21,7 +21,7 @@ export default class ResourceLinkUi extends Plugin {
 				tooltip: true
 			});
 			
-			this.listenTo(button, 'execute', () => editor.execute('triggerResourceSelector'))
+			this.listenTo(button, 'execute', () => editor.execute('invictaSelectResource'))
 			
 			return button;
 		})

@@ -85,10 +85,14 @@
 		})
 
 		document.getElementById('editor-test').addEventListener('click', () => {
-			console.log(' I hear you')
-			editorIntance.execute('addResourceLink', {
+			// console.log(' I hear you')
+			editorIntance.execute('invictaAddLink', {
 				resource_url: '/current/path',
 				resource_title: 'Link Title'
+			})
+			editorIntance.execute('invictaInsertImage', {
+				image_url: 'https://new.ibc.local/storage/images/group-20.png',
+				image_alt: 'Just some text for testing'
 			})
 		})
 

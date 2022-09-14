@@ -1,6 +1,6 @@
 import Command from '@ckeditor/ckeditor5-core/src/command';
 
-export default class TriggerSelector extends Command {
+export default class SelectImage extends Command {
 	
 	execute() {
 		
