@@ -21,7 +21,7 @@ export default class InsertImage extends Plugin {
 			});
 
 			// Callback executed once the image is clicked.
-			button.on('execute', () => editor.execute('triggerImageSelector'));
+			button.on('execute', () => editor.execute('invictaSelectImage'));
 
 			return button;
 		});
